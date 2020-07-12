@@ -558,6 +558,7 @@ border="1"
 <!-- 推荐 -->
 <br>
 ```
+4.双标签成对使用
 
 ## 文本格式化
 
@@ -1468,7 +1469,7 @@ table[border="1"]>(thead>tr>th*3{字段$})+(tbody>tr>td*3{数据$})+(tfoot>tr>td
 6. `disabled`: 禁用失效的文本框，表现为暗淡些
 7. `readonly`：只读的文本框，外观没有什么变化，可以复制，但是不能输入。
 8. `value`：是指文本框的默认值，用户输入的值，通常用于收集信息。
-9. `placeholder`：
+9. `placeholder`：输入框提示性文字，，注意`IE10-`不支持。
 
 #### input password 单行密码框
 
