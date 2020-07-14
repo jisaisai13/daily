@@ -130,7 +130,7 @@
 
 > `#` 表示是一个空链接
 
-注意当是外链接时，请记得要加上协议部分，不然无法访问
+注意当是外链接时，请记得要加上协议部分，不然无非访问
 
 ```html
 <!-- 错误的 -->
@@ -385,8 +385,8 @@ cosy/src/pages/1.html
 1. `jpg`：有损压缩格式图片，是位图，通常用于产品、风景、人物等色彩丰富的图片。
 2. `png`：无损格式图片，图片画质清晰，通常支持`alpha`通道透明，通常用于小图标、或者产品图片。
 3. `gif`：256色，显示的色域很窄，所以一般用于图标，或者颜色简单的图片，其次它可以做动图。
-4. `svg`：svg是矢量图片，同时支持图片动画。
-5. `webp`：这是谷歌发明的一款优于`jpg`的图片格式，`chrome`可以预览。
+4. `svg`：svg是矢量图片，同事支持图片动画。
+5. `webp`：这是谷歌发现的一款优于`jpg`的图片格式，`chrome`可以预览。
 
 
 
@@ -422,7 +422,7 @@ cosy/src/pages/1.html
 
 1. `left` 水平左对齐
 2. `right` 水平右对齐
-3. `baseline` 垂直基线对齐 默认对齐方式
+3. `baseline` 垂直基线对齐
 4. `bottom` 垂直底部对齐
 5. `top` 垂直顶部对齐
 6. `middle` 垂直居中
@@ -558,7 +558,6 @@ border="1"
 <!-- 推荐 -->
 <br>
 ```
-4.双标签成对使用
 
 ## 文本格式化
 
@@ -1186,7 +1185,7 @@ table[border="1"]>(thead>tr>th*3{字段$})+(tbody>tr>td*3{数据$})+(tfoot>tr>td
 
 ```html
 <tr>
-  <td>10001</td>                                                     
+  <td>10001</td>
   <td>张三</td>
   <td>60</td>
 </tr>
@@ -1469,7 +1468,12 @@ table[border="1"]>(thead>tr>th*3{字段$})+(tbody>tr>td*3{数据$})+(tfoot>tr>td
 6. `disabled`: 禁用失效的文本框，表现为暗淡些
 7. `readonly`：只读的文本框，外观没有什么变化，可以复制，但是不能输入。
 8. `value`：是指文本框的默认值，用户输入的值，通常用于收集信息。
-9. `placeholder`：输入框提示性文字，，注意`IE10-`不支持。
+9. `placeholder`：输入框提示性文字，注意`IE10-`不支持。
+
+```html
+<!-- 当`autocomplete`写在`form`标签上，表示`form`内所有的控件都会关闭自动完成功能 -->
+<form name="form" method="POST" autocomplete="off">
+```
 
 #### input password 单行密码框
 
@@ -1484,3 +1488,958 @@ table[border="1"]>(thead>tr>th*3{字段$})+(tbody>tr>td*3{数据$})+(tfoot>tr>td
 6. `readonly`：只读的文本框，外观没有什么变化，可以复制，但是不能输入。
 7. `value`：是指文本框的默认值，用户输入的值，通常用于收集信息。
 8. `placeholder`：输入框提示性文字，注意`IE10-`不支持。
+9. `required`：必填字段
+
+## 2020-7-13
+
+#### 单选框 radio
+
+```html
+<input type="radio" value="man"> 男
+<input type="radio" value="women"> 女
+```
+
+如果需要呈现单选的效果，那么就给一组取相同的名称即可
+
+```html
+<input name="gender" type="radio" value="man"> 男
+<input name="gender" type="radio" value="women"> 女
+```
+
+##### 属性
+
+`type`：类型，为`radio` 单选框
+
+`value`：单选框的值，值可以是任何字符串类型
+
+`disabled`：失效的单选框 
+
+```html
+<input name="gender" type="radio" value="boy" disabled>
+```
+
+`checked`：默认选中属性
+
+```html
+<input name="gender" type="radio" value="boy" checked>
+```
+
+`autofocus`：自动获取焦点
+
+#### 复选框 checkbox
+
+```html
+<input type="checkbox"> 打球 
+<input type="checkbox"> 游泳
+```
+如果为了表示是复选框一组，那么请取相同的`name`名即可
+
+```html
+<input name="hobby" type="checkbox"> 打球 
+<input name="hobby" type="checkbox"> 游泳
+<input name="hobby" type="checkbox"> 看书
+```
+
+##### 属性
+
+`type`：类型，为`checkbox` 复选框
+
+`value`：复选框的值，值可以是任何字符串类型
+
+`disabled`：失效的复选框 
+
+```html
+<input name="hobby" type="checkbox" value="boy" disabled>
+```
+
+`checked`：默认选中属性
+
+```html
+<input name="hobby" type="checkbox" value="看书" checked>
+```
+
+`autofocus`：自动获取焦点
+
+##### 标签 label
+
+`label` 是行级标签，要让行级标签换行，可以试用`<br>`强制换行，或者转成块`display:block`
+
+`label`通常用于表单中，表示表单控件字段名，其次通过`label`的`for`属性使得单击标签文字与之相对应的控件自动获取焦点。
+
+```html
+<form name="form" method="POST">
+  <p>
+    <label for="username">用户账户：</label><br>
+    <input id="username" type="text" size="10">
+  </p>
+  <p>
+    <label for="password">登录密码：</label><br>
+    <input id="password" type="password" size="10">
+  </p>
+  <button>登录</button>
+</form>
+```
+
+
+或者不使用`for`，直接用`label`包裹控件，也可以达到扩大单击范围的效果，代码如下
+
+```html
+<label>
+  <input name="gender" type="radio" value="boy"> 男
+</label>
+
+<label>
+<input  name="gender"  type="radio" value="girl"> 女 
+</label> 
+```
+
+特别注意 `for`不能为空，否则会导致以下代码不能扩大单击范围，所以当用label包裹控件，记得一定要移除`for`属性，否则影响效果。
+```html
+<label for="">
+  <input name="hobby" type="checkbox" > 打球 
+</label>
+```
+
+##### 按钮 button
+
+按钮分别有`button`双标签按钮和`input`单标签按钮
+
+### button 双标签按钮 （推荐）
+
+```html
+<button type="button">普通按钮</button>
+<button type="submit">提交按钮</button>
+<button type="reset">重置按钮</button>
+<button type="image" src="images/btn.png">图像按钮</button>
+```
+
+### button 单标签按钮
+
+```html
+<input type="button" value="普通按钮">
+<input type="submit" value="提交按钮">
+<input type="reset" value="重置按钮">
+<input type="image" src="images/btn.png" value="图像按钮">
+
+```
+
+> 注意：当不给`button`设置`type`的时候，那么默认它是提交按钮
+
+```html
+<form>
+  <button>提交按钮</button>
+  <button type="submit">提交按钮</button>
+</form>
+```
+
+> 注意：`submit` 和 `reset` 按钮都是需要和`form`标签相关联的，一定要再`form`内部，不然无效
+
+
+### 单行下拉列表框 select
+
+单行下拉列表和单选框是两种不同风格的控件，功能是相同
+
+```html
+<select>
+  <option value="">会员类型</option>
+  <option value="1">普通会员</option>
+  <option value="2">高级会员</option>
+</select>
+```
+
+#### 单行下拉列表框 optgroup
+
+```html
+<select>
+  <option value="">会员类型</option>
+  <optgroup label="A组">
+    <option value="1">普通会员</option>
+    <option value="2">高级会员</option>
+  </optgroup>
+  <optgroup label="B组">
+    <option value="3">钻石会员</option>
+    <option value="4">贵宾会员</option>
+  </optgroup>
+</select>
+```
+
+#### 单行下拉列表框 select的属性
+
+`size`：规定下拉列表中可见选项的数目（行数）。
+
+`autofocus`：自动获取焦点
+
+`disabled`：禁用下拉列表框
+
+`multiple`：加上这个表示**多行**下拉列表框
+
+`required`：必填字段
+
+#### 单行下拉列表框 optgroup的属性
+
+`label`：标签名
+
+```html
+<select>
+  <option value="">会员类型</option>
+  <optgroup label="A组">
+    <option value="1">普通会员</option>
+    <option value="2">高级会员</option>
+  </optgroup>
+</select>
+```
+
+#### 单行下拉列表框 option的属性
+
+`selected`：表示默认选择的成员
+
+`value`：下拉列表框成员的值
+
+`disabled`：某个`option`成员禁用
+
+#### 多行文本框 textarea
+
+```html
+<textarea></textarea>
+```
+
+#### textarea 的属性
+
+`cols` 宽度（字段）
+
+`rows` 行数
+
+`disabled` 禁用的多行文本框
+
+`readonly` 只读的多行文本框
+
+`placeholder` 提示性文字
+
+`maxlength` 最大输入字符数
+
+> 注意 `textarea` 没有`value`属性，你若要设置默认值，可以直接再`<textarea>默认值</textarea>`内部写入，`textarea`默认值支持保留预处理文本，也就是说支持换行、空格、缩进等。
+
+#### input[type="file"] 文件上传
+
+```html
+<input type="file">
+```
+#### input[type="file"] 的属性
+
+`type`: `type="file"` 上传控件
+
+`accept`：限制选择的类型
+
+```html
+<!-- 表示只允许png格式图片 -->
+<input type="file" accept="image/png" />
+
+<!-- 表示只允许gif和jpeg格式图片 -->
+<input type="file" accept="image/gif, image/jpeg" />
+
+<!-- 表示允许所有的图像文件 -->
+<input type="file" accept="image/*" />
+```
+
+`multiple`：允许上传多个文件
+
+```html
+<input type="file" multiple />
+```
+
+`webkitdirectory`：允许上传文件夹
+
+```html
+<input type="file" webkitdirectory />
+```
+
+### html5 新增表单控件
+
+#### input[type="email"] 邮箱
+
+有语义，在必填的时候会验证邮箱格式
+
+```html
+<input type="email" size="10" placeholder="请输入邮箱" required>
+```
+
+#### input[type="tel"] 电话
+
+```html
+<input type="tel" size="10" placeholder="请输入电话" required>
+```
+
+#### input[type="search"] 搜索
+
+```html
+<input type="search" placeholder="请输入关键字">
+```
+它看起来和单行文本框一样，唯独不同是，再右侧有一个`x`，可以清空文本内容。
+
+
+#### input[type="date"] 日期
+
+```html
+<input type="date" placeholder="请选择日期">
+```
+
+> 注意事项 日期 `value` 默认选中值 非常严格
+
+> 1. 日期之间必须以英文中横杠分割 例如 `1997-10-07`
+
+> 2. 日期必须双数，错误的`1997-10-7`中7 应该改为`07`
+
+#### input[type="time"] 时间
+
+```html
+<input type="time" placeholder="请选择时间" value="09:00">
+```
+
+> 注意：时间日期用英文冒号分割，数字必须是双数`09`
+
+#### input[type="color"] 颜色选择器
+
+```html
+<!-- color的值value只支持16进制颜色 -->
+<input type="color" value="#ff0000">
+```
+
+#### input[type="range"] 滑块选择器
+
+```html
+<input type="range" min="0" max="1" id="range" step="0.05" value="0">
+```
+
+`type`： `type="range"`滑块
+
+`min`: 最小值
+
+`max`：最大值
+
+`value`：默认值
+
+`step`：步进 
+
+`disabled`：失效的
+
+划过调节透明度
+
+```html
+<input type="range" min="0" max="1" id="range" step="0.05" value="0">
+<div id="box" style="width: 100px;height:100px;background-color:red;opacity:0;"></div>
+<script>
+  document.querySelector('#range').oninput = function(){
+    console.log(this.value);
+    document.querySelector('#box').style.opacity=this.value;
+  }
+</script>
+```
+
+#### input[type="number"] 数值输入框
+
+只能输入数字
+
+```html
+<input type="number" value="10" min="5" max="100" placeholder="请输入数字">
+```
+
+`type`： `type="number"`数字输入框
+
+`min`: 最小值
+
+`max`：最大值
+
+`value`：默认值
+
+`step`：步进
+
+
+#### datalist 数据列表
+
+```html
+<input type="text" placeholder="出发城市" list="citys">
+<datalist id="citys">
+  <option value="nanchang">南昌</option>
+  <option value="guangzhou">广州</option>
+  <option value="beijing">北京</option>
+</datalist>
+```
+
+#### url 地址
+
+```html
+<input type="url" placeholder="请输入网址">
+```
+
+
+## iframe 框架 2020-7-14
+
+```html
+<iframe src="http://www.baidu.com" width="200" height="200"></iframe>
+```
+
+### iframe 的属性
+
+`width`： 宽度（支持像素px和百分百%）
+
+`height`： 高度（支持像素px和百分百%）
+
+`frameborder`：边框（数字）0 表示 无边框
+
+`name`： 命名，主要用于和 超级链接中`target`相关联
+
+`scrolling`：`yes` 出现滚动条 `no` 不出现 `auto` 默认值 显示的下不出现滚动条，显示不下出现滚动条
+
+示例
+
+```html
+<table width="100%" height="100%" border="0" cellspacing="0">
+  <tr>
+    <th width="200" bgcolor="#ccc" valign="top" align="left">
+      <ul type="none" >
+        <li><a href="home.html" target="main">主页</a></li>
+        <li><a href="about.html" target="main">关于</a></li>
+      </ul>
+    </th>
+    <td>
+      <iframe name="main" src="home.html" width="100%" height="100%" frameborder="0"></iframe>
+    </td>
+  </tr>
+</table>
+```
+
+#### `iframe`的优缺点有那些？
+
+优点:
+1. 程序调入静态页面比较方便
+2. 页面和程序分离
+3. 可实现局部刷新
+
+缺点：
+
+1. 样式/脚本需要额外链入，会增加请求
+2. 框架结构有时会让人感到迷惑，滚动条除了会挤占有限的页面空间外会使iframe布局混乱，还会分散访问者的注意力，影响用户体验。
+3. 影响搜索引擎优化
+4. 移动设备无法完全显示框架，设备兼容性差
+5. 阻塞页面加载，影响网页加载速度
+
+### 颜色
+
+#### 16进制颜色
+
+```html
+<h1 style="color:#000000">标题</h1>
+```
+
+##### 常见的颜色值：
+
+1. 黑色：`#000000`
+2. 灰色：`#666666`
+3. 红色：`#ff0000`
+4. 绿色：`#00ff00`
+5. 蓝色：`#0000ff`
+6. 橙色：`#ff6600`
+7. 白色：`#ffffff`
+
+##### 常见的情景颜色
+
+1. 正文颜色：`#363636`
+2. 辅助颜色：`#636363`
+3. 标题颜色：`#101010`
+
+##### `16`进制颜色缩写规则
+
+`#ffffff` 可以缩写为`#fff`
+
+`#ff6600` 可以缩写为`#f60`
+
+> 注意：`16`进制颜色不支持透明度
+
+#### rgb 颜色
+
+`IE11` 以下不支持
+
+语法
+
+```
+color:rgb(红色0~255,绿色0~255,蓝色0~255)
+```
+
+红色、绿色、蓝色它们的取值范围分别是0-255
+
+示例
+
+```html
+<h1 style="color:rgb(255,255,255)">标题</h1>
+```
+
+##### 常见的rgb颜色
+
+白色：`color:rgb(255,255,255)`
+
+黑色：`color:rgb(0,0,0)`
+
+红色：`color:rgb(255,0,0)`
+
+绿色：`color:rgb(0,255,0)`
+
+蓝色：`color:rgb(0,0,255)`
+
+#### rgba 颜色
+
+支持`alpha`通道透明的`rgb`颜色
+
+语法
+
+```
+color:rgba(红色0~255,绿色0~255,蓝色0~255,透明度0~1)
+```
+
+示例
+
+```
+<h1 style="color:rgba(255,255,255,0.5)">标题</h1>
+```
+
+#### 英文颜色
+
+1. 黑色： `black`
+2. 白色：`white`
+3. 红色： `red`
+4. 绿色：`green`
+5. 蓝色： `blue`
+6. 橙色： `orange`
+7. 黄色： `yellow`
+8. 粉色： `pink`
+9. 紫色：`purple`
+10. 棕色： `brown`
+11. 灰色: `gray`
+
+
+## 字符实体
+
+|  实体名  |  符号   |
+| -       |    -    |
+| 空格    |   `&nbsp;` |
+| `<`    |   `&lt;` |
+| `>`    |   `&gt;` |
+| `&`    |   `&amp;` |
+| `"`    |   `&quot;` |
+| `'`    |   `&apos;` |
+| 版权    |   `&copy;` |
+| 注册    |   `&reg;` |
+| `x`    |   `&times;` |
+
+
+## URL 地址
+
+语法
+
+```html
+scheme://host.domain:port/path/filename
+```
+
+示例
+
+```html
+http://www.baidu.com/company/about.html
+```
+
+`scheme`： 协议部分，比如`http://`
+
+`host`：主机部分，通常是`www`
+
+`domain`：域名部分，通常是`baidu.com`
+
+`port`：端口部分，通常是`80`
+
+`path`：路径部分，通常是`/company`
+
+`filename`：文件名部分，通常是`about.html`
+
+## css 基础 
+
+### css语法
+
+```css
+选择器 {
+  属性名1: 属性值1;
+  属性名2: 属性值2;
+}
+```
+
+例如
+
+```css
+p {
+  color: red;
+  font-size: 18px;
+}
+```
+
+容易出错点：
+
+- `{` 写成中文的`｛`
+- `:` 写成 `=`
+- `;` 写成 `,` 或者不写
+
+> 注意：`css`书写都是小写的
+
+### 风格
+
+展开的风格
+
+```css
+p {
+  color: red;
+  font-size: 18px;
+}
+```
+
+紧凑的风格
+
+```css
+p {color: red;font-size: 18px;}
+```
+
+### 注释
+
+CSS注释以 "/" 开始, 以 "/" 结束, 实例如下
+
+```css
+p {
+   /*文字居中*/
+  text-align:center;
+}
+```
+
+### 选择器
+
+#### id选择器
+
+`id`选择器定义的时候前面加一个`#`，后面接上`id`名
+
+`id`命名在同一个页面中，不能重复出现，否则会导致`js`查找元素出问题
+
+```html
+<style>
+#box{
+  color: red;
+}
+</style>
+
+<div id="box">
+  文本
+</div>
+```
+#### class 类选择器
+
+`class`选择器定义的时候前面加一个`.`，后面接上`class`名
+
+`class`选择器在页面中可以复用，也是常用的选择器。
+
+```html
+<style>
+.box{
+  color: red;
+}
+</style>
+
+<div class="box">
+  文本1
+</div>
+
+<div class="box">
+  文本2
+</div>
+```
+#### tag 标签选择器
+
+直接使用元素标签名作为选择器，注意此操作稍有不慎就会导致污染其他模块
+
+```html
+<style>
+div{
+  color: red;
+}
+</style>
+
+<div class="box">
+  文本1
+</div>
+
+<div class="box">
+  文本2
+</div>
+```
+
+#### attr 属性选择器
+
+```html
+<style>
+[name="username"]{
+  color: red;
+}
+</style>
+
+<input name="username">
+```
+
+#### 伪类选择器
+
+```html
+<style>
+a{
+  color:red;
+}
+a:visited{
+  color: blue;
+}
+a:hover{
+  color: orange;
+}
+a:active{
+  color: white;
+}
+</style>
+
+<a href="#">链接</a>
+```
+
+#### 通配符选择器
+
+`*` 表示所有的元素
+
+```css
+*{
+  margin: 0;
+}
+/* 所有的元素外边距都设置为0 */
+
+div * {
+  color: red;
+}
+/* div内部所有子元素外边距都设置为0 */
+
+div > * {
+  color: red;
+}
+/* div下所有的直接子元素外边距都设置为0 */
+```
+
+### css样式优先级
+
+`!important` > 行内样式 > `id` > (类 = 属性) > 标签 > 默认样式 
+
+```html
+<style>
+div{
+  color: red !important;
+}
+
+[name="box"]{
+  color: blue;
+}
+
+.box{
+  color: green;
+}
+
+#box{
+  color: yellow;
+}
+</style>
+
+<div id="box" name="box" class="box" style="color: blueviolet;">
+  文本
+</div>
+```
+
+### css层级关系
+
+#### `父 后代` 选择器：
+
+```css
+div p{
+  color: red;
+}
+```
+
+> `div`内部所有的`p`标签都会被应用红色
+
+#### `父 > 直接子元素` 选择器：
+
+```css
+div > p{
+  color: red;
+}
+```
+> `div`内部直接子元素`p`被应用红色
+
+#### `元素 + 紧相邻**下一个**同辈元素` 选择器：
+
+```css
+div + p{
+  color: red;
+}
+```
+
+#### `元素 ~ 紧相邻的下一个**所有的**同辈元素` 选择器：
+
+```css
+div ~ p{
+  color: red;
+}
+```
+
+示例
+
+```html
+<style>
+.star > span{
+  color: red;
+}
+.star > .cur ~ span{
+  color: black;
+}
+</style>
+
+<p class="star">
+  <span>★</span>
+  <span class="cur">★</span>
+  <span>★</span>
+  <span>★</span>
+  <span>★</span>
+</p>
+```
+
+#### `元素.元素` 选择器 、 `元素#元素` 选择器、`元素:元素` 选择器
+
+注意下面代码之间的区别
+
+```css
+div.cur{
+  color: red;
+}
+/* <div class="cur"></div> */
+
+
+div .cur{
+  color: red;
+}
+/* 
+<div>
+  <span class="cur"></span>
+</div>
+*/
+```
+
+#### `元素1,元素2,元素3`选择器：多个元素公用属性可以抽取出来
+
+```css
+h1,p,a{
+  color: red;
+  font-size: 12px;
+}
+```
+
+
+### css选择器的权重值
+
+| 选择器  |  权重值 |
+|   -    |    -     |
+| 内联样式         |  1000 |
+| id               |  100   |
+| 类，伪类、属性选择器 |  10 |
+| 标签选择器、伪元素选择器 |  1 |
+| 配符、子选择器、相邻选择器 |  0 |
+| 浏览器默认 |  没有权限 |
+
+
+### css 引入方式
+
+1. `link`外链`head`引入
+
+```html
+<head>
+  <link rel="stylesheet" href="路径.css">
+</head>
+```
+
+2. `style`内部`head`导入
+
+```html
+<head>
+  <style>
+    .box{
+      color: red;
+    }
+  </style>
+</head>
+```
+
+3. `style`元素行内导入
+
+```html
+<div style="color:red;">文本</div>
+```
+
+### css文本格式化
+
+1. `color`：文本颜色
+
+```css
+span{
+  color:red;
+}
+```
+2. `font-size`: 字体大小，浏览器默认大小为`16px`
+
+```css
+span{
+  /*px % em rem pt*/
+  font-size: 80px;
+}
+```
+
+3. `font-family`：定义字体名，字体的选择是要考虑客户电脑是否存在相关字体
+
+```css
+font-family: "宋体"
+```
+字体支持后备机制
+
+```css
+font-family: "宋体","微软雅黑","sans-serif"
+```
+
+> 字体若有空格分割，一定要用双引号包裹
+
+`elementUI`团队字体定义方案
+
+```css
+ font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+```
+
+`antd`团队字体定义方案
+
+```css
+font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;
+```
+
+4. `line-height`：行高，支持像素`px`，还支持倍数（推荐）
+
+```css
+p{
+  font-size: 20px;
+  line-height: 30px;
+  line-height: 1.5; /* 1.5倍 和字体大小有关系 */
+}
+
+```
+
+5. `font-weight`: `bold`（或者`600`） 加粗，`normal`表示正常，取消加粗。
+
+6. `font-style`: `italic` 倾斜，`normal`表示正常，取消倾斜。
+
+7. `text-decoration`：修饰线，上划线`overline`，中划线`line-through`，下划线`underline`，没有线`noned`
