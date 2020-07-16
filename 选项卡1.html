@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .panel{
+            border: 10px solid #E5E5E5;
+        }
+        .panel p{ 
+            box-sizing: border-box;
+            display: inline-block;
+            width: 25%;
+            height: 30%;
+            text-align: center;
+            color: #8C8C8D;
+            text-decoration: none;
+            padding: 0;
+        }
+        .panel .active a{
+            height: 100%;
+            width: 70%;
+        }
+        .panel .active{
+            border-bottom: 1px solid #E9E9E9;
+        }
+        .panel .active a:hover{
+            color: red;
+            border-bottom: 4px solid red;
+
+        }
+        .panel .ding{
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <p class="active">
+            <a>标签1</a>
+        </p><p class="active">
+            <a>标签2</a>
+        </p><p class="active">
+            <a>标签3</a>
+        </p><p class="active">
+            <a>标签4</a>
+        </p>
+        <p class="ding">
+            <a>内容1</a>
+        </p>
+    </div>
+</body>
+</html>
