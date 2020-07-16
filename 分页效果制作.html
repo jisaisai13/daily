@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box a{
+            display: inline-block;
+            background-color: #F4F4F5;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            color: #606266;
+        }
+        .box .disabled{
+            opacity: 0.5;
+        }
+        .box .active{
+            background-color: #409EFF;
+        }
+        .box .huaguo:hover{
+            color: #409EFF;
+        }
+        .box.left{
+            text-align: left;
+        }
+        .box.center{
+            text-align: center;
+        }
+        .box.right{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="box right">
+        <a class="disabled">&lt</a>
+        <a class="active huaguo">1</a>
+        <a class="huaguo">2</a>
+        <a class="huaguo">3</a>
+        <a class="huaguo">4</a>
+        <a class="huaguo">5</a>
+        <a class="huaguo">6</a>
+        <a>...</a>
+        <a class="huaguo">100</a>
+        <a>&gt</a>
+    </div>
+</body>
+</html>
