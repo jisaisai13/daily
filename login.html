@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/seecen.ico">
+    <title>登录</title>
+    <style>
+        html,body{
+            background-color: #21AD7E;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: "\u5fae\u8f6f\u96c5\u9ed1", Arial, sans-serif;
+            font-size: 14px;
+            color: #444;
+        }
+        .login{
+            display: inline-block;
+            width: 380px;
+            height: 420px;
+            border-color: #fff;
+            border-radius: 4px;
+            background-color: #fff;
+            position: absolute;
+            text-align: center;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .login p{
+            display: inline-block;
+        }
+        .login a.logo{
+            display:inline-block;
+            text-align: center;
+            padding-top:36px ;
+            padding-bottom: 40px;
+        }
+        .login input{
+            display: block;
+            border: 1px solid #cfe0da;
+            font-size: inherit ;
+            border-radius: 4px;
+            width: 310px;
+            height: 40px;
+            margin-bottom: 18px;
+            outline: none;
+            padding-left: 15px;
+        }
+        .login input:focus{
+            border-color: #ccc;
+        }
+        .login .forget{
+            width: 310px;
+            margin-bottom: 18px;
+        }
+        .login p input::placeholder{
+            color: #bcbcbc;
+        }
+        .login .forget label{
+            cursor: pointer;
+            user-select: none;
+            float: left;
+        }
+        .login .forget input{
+            display: none;
+        }
+        .forget span::before{
+            display: inline-block;
+            content: "";
+            width: 20px;
+            height: 20px;
+            border: 1px solid #c0c0c0;
+            border-radius: 4px;
+            vertical-align: middle;
+            text-align: center;
+            margin-right: 10px;
+            line-height: 1.5;
+        }
+        .forget input:checked + span::before{
+            content: "✔";
+            color: #21AD7E;
+        }
+        .forget a{
+            color: inherit;
+            text-decoration: none;
+            float: right;
+        }
+        .login button{
+            outline: none;
+            border: none;
+            width: 310px;
+            height: 40px;
+            font-size: 16px;
+            background-color:#28C08D;
+            font-weight: bold;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .footer{
+            padding-top: 52px;
+        }
+        .footer a{
+            color: #21AD7E;
+            text-decoration: none;
+        }
+        .footer a:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <a  class="logo" href="#"><img src="images/logo (1).png"></a>
+        <form>
+            <p>
+                <input type="text" name="email"  placeholder="邮箱">
+            </p>
+            <P>
+            <input type="password" name="password" placeholder="密码">
+            </P>
+            <p class="forget">
+                <label><input type="checkbox"><span>记住账号</span></label>
+                <a href="#">忘记密码</a>
+            </p>
+            <button>登录</button>
+        </form>
+        <p class="footer">
+            <span>没有账号，<a href="#">马上注册<img src="images/icon_arrow.png" align="absmiddle"></a></span>
+        </p>
+    </div>
+</body>
+</html>
