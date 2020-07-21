@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .in{
+            display: none;
+        }
+        .check{
+            display: inline-block;
+            position: relative;
+            outline: none;
+            cursor: pointer;
+            user-select: none;
+            width: 40px;
+            height: 20px;
+            border-radius: 20px;
+            background-color: #bdbdbd;
+        }
+        .check::before{
+            display: inline-block;
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            z-index: 20;
+            background-color: #fff;
+        }
+        .in:checked + .check::before {
+            left: 20px;
+        }
+        .in:checked + .check{
+            background-color: #4CD860;
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="male" class="in" >
+    <label for="male" class="check"></label>
+</body>
+</html>
