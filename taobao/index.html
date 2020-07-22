@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="short icon" href="images/seecen.ico">
+    <title>taobao</title>
+    <style>
+        body{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: #6c6c6c;
+            box-sizing: border-box;
+        }
+        .clearfix::after{
+            display: block;
+            content: "";
+            clear: both;
+        }
+        .header{
+            margin-left:auto;
+            margin-right: auto;
+        }
+        .header .inner{
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .header .inner .logo{
+            float: left;
+            padding-top: 22px;
+        }
+        .header .inner .logo a{
+            text-decoration: none;
+            color: inherit;
+        }
+        .header .inner .masthead{
+            float: right;
+            padding-bottom: 5px;
+        }
+        .header .inner .masthead .notice{
+            box-sizing: border-box;
+            background-color: #FEF2F2;
+            width: 900px;
+            line-height: 28px;
+            text-align: center;
+            border: 1px solid #ffb4a8;
+            margin-top: 22px;
+            margin-right: 96px;
+            margin-bottom: 14px;
+        }
+        .header .masthead p{
+            margin: 0;
+            padding: 0;
+        }
+        .header .masthead .feedback{
+            text-align: right;
+        }
+        .header .masthead .feedback a{
+            text-decoration: none;
+            color: inherit;
+            font-size: inherit;
+        }
+        .header .masthead .feedback a:hover{
+            color: #ff4400;
+        }
+        .main{
+            width: 100%;
+            height: 600px;
+            background: url(images/banner.jpg) no-repeat 50% 50%;
+        }
+        .main .inner{
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .main .inner .infor{
+            margin-top: 120px;
+            float: right;
+            width: 300px;
+            background-color: white;
+            padding-left: 25px;
+            padding-top: 35px;
+            padding-right: 25px;
+        }
+        .main .inner .infor h4{
+            margin-bottom: 28px;
+            font-size: 16px;
+            color: #3c3c3c;
+            margin-top: 0;
+        }
+        .main .inner .infor p{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            border: none;
+        }
+        .main .inner .infor input{
+            box-sizing: border-box;
+            display: inline-block;
+            width: 300px;
+            height: 40px;
+            border: 1px solid #ddd;
+            outline: none;
+            margin-bottom: 20px;
+            font-family: inherit;
+            color: #ccc;
+            font-size: 14px;
+        }
+        .main .inner .infor .username{
+            background: url(images/user_icon.png) no-repeat 0 50%;
+            padding-left: 48px;
+        }
+        .main .inner .infor .password{
+            background: url(images/pass_icon.png) no-repeat 0 50%;
+            padding-left: 48px;
+        }
+        .main .inner .infor button{
+            width: 300px;
+            height: 42px;
+            background-color: #FF4400;
+            border: none;
+            border-color: #ff4400;
+            border-radius: 3px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .main .inner .infor button:hover{
+            background-color: #F52B00;
+        }
+        .main .inner .infor .logintype{
+            margin-top: 24px;
+            margin-bottom: 32px;
+        }
+        .main .inner .infor  a{
+            display: inline-block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .main .inner .infor .logintype a{
+            margin-right: 26px;
+        }
+        .main .inner .infor a:hover{
+            color: #ff4400;
+        }
+        .main .inner .infor .forget{
+            float: right;
+            margin-bottom: 27px;
+        }
+        .main .inner .infor .forget a{
+            margin-left: 8px;
+        }
+        .footer{
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer .nav{
+            border: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+            line-height: 42px;
+            margin-top: 60px;
+            margin-bottom: 5px;
+        }
+        .footer a{ 
+            display: inline-block;
+            text-decoration: none;
+            color: inherit;  
+        }
+        .footer a:hover{
+            color: #ff4400;
+        }
+        .footer .nav i{
+            color: #dde5ee;
+            margin-left: 8px;
+            margin-right: 5px;
+            font-style:normal ;
+        }
+        .footer .about{
+            line-height: 24px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .footer .about a{
+            margin-right: 7px;
+        }
+        .footer .about span{
+            display: inline-block;
+            color: #9c9c9c;
+            margin-left: 30px;
+        }
+        .footer .permit{
+            line-height: 24px;
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #9c9c9c;
+        }
+        .footer .wj{
+            margin-top: 0;
+            line-height: 24px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- container start -->
+    <div class="container">
+    <!-- header start -->
+    <div class="header">
+        <div class="inner clearfix">
+            <div class="logo">
+                <a href="#"><img src="images/logo.png"> </a>
+            </div>
+            <div class="masthead">
+                <div class="notice">
+                    <p>为确保您账户的安全及正常使用，依《网络安全法》相关要求，6月1日起会员账户需绑定手机。如您还未绑定，请尽快完成，感谢您的理解及支持！</p>
+                </div>
+                <p class="feedback"><a href="#"><img src="images/icon1.png" align="absmiddle">&nbsp;"登录页面"改进建议</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- header end -->
+    <!-- main start -->
+    <div class="main">
+        <div class="inner clearfix">
+            <div class="infor">
+                <h4>密码登录</h4>
+                <form>
+                    <p>
+                        <input class="username" type="text" placeholder="会员名/邮箱/手机号">
+                    </p>
+                    <p>
+                        <input class="password" type="password">
+                    </p>
+                </form>
+                    <button>登&nbsp;录</button>
+                <p class="logintype">
+                    <a href="#"><img src="images/icon2.png" align="absmiddle">&nbsp;微博登录</a>
+                    <a href="#"><img src="images/icon3.png" align="absmiddle">&nbsp;支付宝登录</a>
+                </p>
+                <p class="forget">
+                    <a href="#">忘记密码</a>
+                    <a href="#">忘记会员名</a>
+                    <a href="#">免费注册</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- main end -->
+    <!-- footer start -->
+    <div class="footer">
+        <div class="nav">
+            <a href="#">阿里巴巴集团</a><i>|</i>
+            <a href="#">阿里巴巴国际站</a><i>|</i>
+            <a href="#"> 阿里巴巴中国站</a><i>|</i>
+            <a href="#">全球速卖通</a><i>|</i>
+            <a href="#">淘宝网</a><i>|</i>
+            <a href="#">天猫</a><i>|</i>
+            <a href="#">聚划算</a><i>|</i>
+            <a href="#">一淘</a><i>|</i>
+            <a href="#">阿里妈妈</a><i>|</i>
+            <a href="#">飞猪</a><i>|</i>
+            <a href="#">虾米</a><i>|</i>
+            <a href="#">阿里云计算</a><i>|</i>
+            <a href="#">云OS</a><i>|</i>
+            <a href="#">万网</a><i>|</i>
+            <a href="#">支付宝</a><i>|</i>
+            <a href="#">来往</a>
+        </div>
+        <p class="about">
+            <a href="#">关于淘宝</a>
+            <a href="#">合作伙伴</a>
+            <a href="#">营销中心</a>
+            <a href="#">廉正举报</a>
+            <a href="#">联系客服</a>
+            <a href="#">开放平台</a>
+            <a href="#">诚征英才</a>
+            <a href="#">联系我们</a>
+            <a href="#">网站地图</a>
+            <a href="#">法律声明及隐私权政策</a>
+            <span>&copy;&nbsp;2018 Taobao.com 版权所有</span>
+        </p>
+        <p class="permit">网络文化经营许可证：浙网文 [2016]0132-032 号 | 增值电信业务经营许可证：浙B2-20080224-1 | 信息网络传播视听节目许可证：1109364号</p>
+        <p class="wj"><a href="#"><img src="images/wj.gif"></a></p>
+    </div>
+    <!-- footer end -->
+    </div>
+    <!-- container end -->
+</body>
+</html>
