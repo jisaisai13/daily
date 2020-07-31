@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .box{
+            margin: 100px;
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border: 1px solid pink;
+            transform-style: preserve-3d;
+            /* perspective: 500;
+            -webkit-perspective: 500;景深 */
+            transform: perspective(3000px) rotateX(0deg) rotateY(0deg);
+            animation: rotate 6s linear infinite;
+        }
+        .box > div{
+            position: absolute;
+            width: 100%;
+            line-height: 300px;
+            font-size: 36px;
+            text-align: center;
+            color: white;
+        }
+        .box .face{
+            background-color: salmon;
+            transform: translateZ(150px);
+        }
+        .box .back{
+            background-color: skyblue;
+            transform: translateZ(-150px);
+        }
+        .box .left{
+            background-color: slateblue;
+            transform: translateX(-150px) rotateY(90deg);
+        }
+        .box .right{
+            background-color: thistle;
+            transform: translateX(150px) rotateY(90deg);
+        }
+        .box .top{
+            background-color: yellowgreen;
+            transform: translateY(-150px) rotateX(90deg);
+        }
+        .box .bottom{
+            background-color:wheat;
+            transform: translateY(150px) rotateX(90deg);
+        }@keyframes rotate{
+        0% {
+            transform: rotateX(0deg) rotateY(0deg);
+        }
+        60% {
+            transform: rotateX(-190deg) rotateY(-190deg);
+        }
+        100% {
+            transform: rotateX(-360deg) rotateY(-360deg);
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="face">正面</div>
+        <div class="back">背面</div>
+        <div class="left">左侧面</div>
+        <div class="right">右侧面</div>
+        <div class="top">顶面</div>
+        <div class="bottom">底面</div>
+    </div>
+</body>
+</html>
