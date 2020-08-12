@@ -1,0 +1,75 @@
+body{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,"\5B8B\4F53",sans-serif;
+    font-size: 12px;
+    color: #666;
+  }
+  dl{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  dd{
+    margin-left: 0;
+  }
+  a{
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  a img{
+    border: none;
+  }
+  ul{
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+  }
+  p,h1,h2,h3,h4,h5,h6{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  input,button{
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    outline: none;
+    padding: 0;
+    border: 1px solid transparent;
+  }
+  button{
+    cursor: pointer;
+  }
+  .clearfix::after{
+    display: block;
+    content: "";
+    clear: both;
+    font-size: 0;
+    visibility: hidden;
+}
+@font-face {
+  font-family: 'jisaisai_icon';
+  src:  url('../fonts/icomoon.eot?5ntick');
+  src:  url('../fonts/icomoon.eot?5ntick#iefix') format('embedded-opentype'),
+      url('../fonts/icomoon.ttf?5ntick') format('truetype'),
+      url('../fonts/icomoon.woff?5ntick') format('woff'),
+      url('../fonts/icomoon.svg?5ntick#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+.icon{
+  font-family: "jisaisai_icon";
+  font-style: normal;
+}
+.ib{
+  display: inline-block;
+}
+.float{
+  float: left;
+}
+.lightgrey{
+    color: #999;
+}
