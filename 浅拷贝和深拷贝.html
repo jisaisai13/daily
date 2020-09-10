@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+
+  var obj= {
+  apple: 0,
+  banana: { weight: 52, price: 100 },
+  cherry: 97
+  };
+
+  //浅拷贝
+  // for(var key in obj){
+  //   _obj[key] =obj[key];
+  // }
+
+  //深拷贝
+  Object.copy = function(obj,newObj){
+    newObj = newObj || {};
+    for(var key in obj){
+      if(typeof obj[key] === 'object'){
+        newObj[key] = Array.isArray( obj[key]) ? [] : {};
+        arguments.callee(obj[key],newObj[key]);
+      }else{
+        newObj[key] = obj[key];
+      }
+    }
+    return newObj;
+  }
+
+  var _obj= Object.copy(obj);
+
+  console.log(obj,_obj);
+
+
+</script>
+</body>
+</html>
