@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .gx-checkbox [type="checkbox"]{
+      display: none;
+      cursor: pointer;
+    }
+    .gx-checkbox > span::before{
+      content: " ";
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border:1px solid #ccc;
+      border-radius: 4px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    .gx-checkbox > input:checked + span{
+      color: red;
+      text-align: center;
+    }
+    .gx-checkbox > input:checked + span::before{
+      border-color: red;
+      content: "✔";
+    }
+    </style>
+  
+</head>
+<body>
+  <input type="checkbox">复选框
+  <script>
+    var label = document.createElement('label');
+    label.className = 'gx-checkbox';
+    var span = document.createElement('span');
+    
+    var checkbox = document.querySelector('[type="checkbox"]');
+    span.appendChild(checkbox.nextSibling);
+
+    checkbox.parentElement.insertBefore(label,checkbox);
+
+    label.appendChild(checkbox);
+    label.appendChild(span);
+  </script>
+</body>
+</html>
