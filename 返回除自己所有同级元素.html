@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>首页</li>
+    <li>产品</li>
+    <li id="contact">联系</li>
+    <li>关于</li>
+  </ul>
+
+  <script>
+  function siblings(el){
+    var father = el.parentElement;
+    var arr = [];
+    var index = Array.from(father.children).indexOf( el );
+    for(var i=0;i<father.children.length;i++){
+      if(i==index) continue;
+      arr.push(father.children[i]);
+    }
+    return arr;
+  }
+  console.log( siblings( document.getElementById('contact') ) );  
+  //[li,li,li] 分别是<li>首页</li> <li>产品</li> <li>关于</li>
+
+
+
+//   for (var i = 0; i < 5; i++) { 
+//     setTimeout(function (){
+//       console.log(i); 
+//     },1000); 
+//   }
+//   //输出什么？
+
+
+//   for (var i = 0; i < 5; i++) { 
+//     (function(i){
+//       //立刻执行函数
+//       setTimeout(function (){
+//         console.log(i); 
+//       },1000); 
+//     })(i); 
+//   }
+//   //输出什么？
+
+
+  </script> 
+</body>
+</html>
