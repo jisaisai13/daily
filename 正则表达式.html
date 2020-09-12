@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+
+  // console.log(/cat/.test('15798456cat hyghjk ol 45'));
+
+  // console.log(/@/.exec('xianweb@qq.com'));
+  
+  // console.log(('xianweb@qq.com').match(/@/));//match用于提取
+
+  // console.log('xianweb@qq@.com'.replace(/@/g,'$'));
+
+
+  // var str = '          #iddjn vcv8945div   ';
+  // console.log(str.replace(/^\s+|\s+$/g, ''));//去除前后空格，输出#iddjn vcv8945div
+
+  // console.log('xainweb@qq.com'.replace(/@/g,'$&-$&'));//xainweb@-@qq.com
+
+  // console.log('xianweb@qq.com'.replace(/@/g,'$`'));//xianwebxianwebqq.com
+
+  // console.log('xianweb@qq.com'.replace(/@/g,"$'"));//xianwebqq.comqq.com
+
+  // console.log('hello-world'.replace(/(\w+)(-)(\w+)/,'$3 $2 $1'));
+
+  // var s = '3 and 5'.replace(/[0-9]+/g,function(match){
+  //   return 2 * match;
+  // })
+  // console.log(s);
+
+  // var a = 'The quick brown fox jumped over the lazy dog.';
+  // var pattern = /quick|brown|lazy/ig;
+  // var b = a.replace(pattern,function replacer(match){
+  //   return match.toUpperCase();
+  // })
+  // console.log(b);
+
+  // var str = '1111@aaaa';
+  // var result = str.replace(/([0-9]+)@([a-z]+)/g,function(match,$1,$2,index,char){
+  //   console.log(match,$1,$2,index,char);
+  // })
+
+  //驼峰命名法
+  var str = 'get-element-by-id_jui';
+  var result = str.toLowerCase().replace(/[-_](\w)/g,function(match,$1){
+    return $1.toUpperCase();
+  })
+  console.log(result);
+
+  var str = 'get-element-by-id';
+  var result = str.toLowerCase().replace(/-(\w+)/g,function(match,$1){
+    return $1.slice(0,1).toUpperCase() + $1.slice(1);
+  })
+  console.log(result);
+  
+
+  var str ='--web-1234张sa--web-7845';
+  console.log(str.split(/--web-\d+/gm));
+
+</script>
+</body>
+</html>
