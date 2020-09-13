@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   
+  <p>
+    <button onclick="add()">添加</button>
+  </p>
+
+  <table border="1" cellspacing="0" cellpadding="8" width="600">
+    <thead>
+      <tr>
+        <th>网站</th>
+        <th>网址</th>
+        <th width="100">操作</th>
+      </tr>	
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+  </table>
+
+  <script>
+    var flag = '';
+    var localwebsite = localStorage.getItem('website');
+    if(localwebsite == null){
+      website = [];
+    }else{
+      website = JSON.parse(localwebsite);
+    }
+    list();
+
+    function list(){
+      var temp = '';
+      website.forEach(function(item){
+        temp +=`<tr>
+          <td>${item.name}</td>
+          <td>${item.url}</td>
+          <td>
+            <button onclick="del(this)">删除</button>
+            <button onclick="save(this)">修改</button>
+          </td>
+          </tr>`;
+          document.getElementById('tbody').innerHTML = temp;
+      });
+    }
+
+    //添加
+    function add(){
+      flag = 'add';
+
+      var tbody = document.getElementById('tbody');
+
+      var tr = document.createElement('tr');
+
+      var nameTd = document.createElement('td');
+      nameTd.innerHTML = '<input>';
+      setTimeout(function(){
+        nameTd.firstElementChild.focus();
+      },0)
+
+      var urlTd = document.createElement('td');
+      urlTd.innerHTML = '<input>';
+
+      //操作
+      var actionTd = document.createElement('td');
+      var cancelBtn = document.createElement('button');
+      cancelBtn.innerText = '取消';
+      cancelBtn.onclick = del.bind(this,cancelBtn);
+
+      var saveBtn = document.createElement('button');
+      saveBtn.innerText = '保存';
+
+      //按钮添加进td中
+      actionTd.appendChild(cancelBtn);
+      actionTd.appendChild(saveBtn);
+
+      //保存
+      saveBtn.onclick = save.bind(this,saveBtn);
+
+      tr.appendChild(nameTd);
+      tr.appendChild(urlTd);
+      tr.appendChild(actionTd);
+
+      tbody.insertBefore(tr,tbody.firstChild);
+
+    }
+
+    //删除
+    function del(btn){
+      if(confirm('您确定要删除此项吗？')){
+        var tr = btn.closest('tr');
+        var index = Array.from(tbody.children).indexOf(tr);
+        website.splice(index,1);
+
+        //保存到本地存储
+        saveData();
+
+        tr.remove();
+        
+      }
+    }
+
+    //保存
+    function save(btn){
+
+      var tbody = document.getElementById('tbody');
+      var nameTd = btn.closest('tr').children[0];
+      var urlTd = btn.closest('tr').children[1];
+      var cancelBtn = btn.previousElementSibling;
+
+      if(btn.innerText == '保存'){
+
+        var nameInput = nameTd.firstElementChild;
+        var urlInput = urlTd.firstElementChild;
+        var nameVal = nameInput.value.trim();
+        var urlVal = urlInput.value.trim();
+
+        if(nameVal == ''){
+          alert('请输入网站名称');
+          nameInput.focus();
+          return false;
+        }
+
+        if(!(/^https?:\/\/\w+\.\w+\.\w+$/.test(urlVal))){
+          alert('请输入网站地址');
+          nameInput.focus();
+          return false;
+        }
+
+        nameTd.innerText = nameVal;
+        urlTd.innerText = urlVal;
+
+        btn.innerText = '修改';
+        cancelBtn.innerText = '删除';
+
+        var info = {
+          name:nameVal,
+          url:urlVal,
+        }
+
+        //添加和修改
+        if(flag =='add'){
+          website.unshift(info);
+        }else if(flag =='edit'){
+          var tr = btn.closest('tr');
+          var index = Array.from(tbody.children).indexOf(tr);
+          website[index] = info;
+        }
+
+        //保存到本地存储
+        saveData();
+
+      }else if(btn.innerText == '修改'){
+
+        flag = 'edit';
+        btn.innerText = '保存';
+        var nameText = nameTd.innerText;
+        var urlText = urlTd.innerText;
+
+        nameTd.innerHTML = '<input value="'+nameText+'">';
+        urlTd.innerHTML = '<input value="'+urlText+'">';
+
+        setTimeout(function(){
+          nameTd.firstElementChild.focus();
+        },0)
+
+      }
+
+    }
+
+    //保存数据到本地存储
+    function saveData(){
+      localStorage.setItem('website',JSON.stringify(website));
+    }
+
+  </script>
+
+</body>
+</html>
