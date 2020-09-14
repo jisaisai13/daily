@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [1,8,5,9,6,7,2,14,85];
+    //冒泡排序
+    function bubbleSort(arr){
+      for(var i=0;i<arr.length-1;i++){
+        for(var j=0;j<arr.length-i-1;j++){
+          if(arr[j]>arr[j+1]){
+            var temp = arr[j+1];
+            arr[j+1] = arr[j];
+            arr[j] = temp;
+          }
+        }
+      }
+      return arr;
+    }
+    
+    //选择排序
+    function selectSort(arr){
+      for(var i=0;i<arr.length - 1;i++){
+        var minIndex = i;
+        for(var j = i+1;j<arr.length-1;j++){
+          if(arr[minIndex]>arr[j]){
+            minIndex = j;
+          }
+        }
+        if(minIndex != i){
+          var temp = arr[i];
+          arr[i] = arr[minIndex];
+          arr[minIndex] = temp;
+        }
+      }
+      return arr;
+    }
+
+    //插入排序
+    function insertSort(arr){
+      var current = '';//当前要排序的数
+      for(var i=1;i<arr.length;i++){
+        current = arr[i];//取出要排序的数
+        var preIndex = i-1;//要排序的数
+        while(preIndex>=0&&current<arr[preIndex]){
+          arr[preIndex+1] = arr[preIndex];
+          preIndex--;
+        }
+        arr[preIndex+1]=current;
+      }
+      return arr;
+    }
+
+    //二分查找法
+    function binarySort(arr){
+      
+    }
+
+    //快速排序
+    function quickSort(arr){
+      if(arr.length<=1){return arr};
+      var left = [];
+      var right = [];
+      var pivotIndex = Math.floor(arr.length/2);
+      var pivot = arr.splice(pivotIndex,1)[0];
+      for(var i=0;i<arr.length;i++){
+        if(arr[i]<pivot){
+          left.push(arr[i]);
+        }
+        if(arr[i]>pivot){
+          right.push(arr[i]);
+        }
+      }
+      return quickSort(left).concat([pivot],quickSort(right));
+    }
+
+    function sad(){}
+
+    console.log(bubbleSort(arr));
+
+    console.log(selectSort(arr));
+
+    console.log(insertSort(arr));
+
+    console.log(quickSort(arr));
+
+
+  </script>
+</body>
+</html>
