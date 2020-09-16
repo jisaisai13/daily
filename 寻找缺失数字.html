@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function find(arr){
+      var value = (arr[arr.length-1] - arr[0]) / arr.length;
+      for(var i=1;i<arr.length;i++){
+        var temp = arr[i-1] + value;
+        if(temp != arr[i]){
+          return temp;
+        }
+      }
+      return 0;
+    }
+    console.log(find([8,28,38]))
+  </script>
+</body>
+</html>
