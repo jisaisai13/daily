@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  // 1.判断方法
+  var num = 8;
+  var str = (num<10?'0':'') + num;
+  console.log(str);
+
+  //2.截取方法
+  var num = 10;
+  var str = ('0'+num).slice(-2);
+  console.log(str);
+
+  //3.es6函数
+  var num = 8;
+  var str = num.toString().padStart(2,'0');
+  console.log(str);
+
+
+  var mobiel = '18579105168';
+
+  function hidden(str){
+    var str1 = str.slice(0,3);
+    var str2 =str.slice(-4);
+    str =str1 +'****'+str2;
+    return str;
+  }
+  console.log(hidden(mobiel));
+</script>
+</body>
+</html>
