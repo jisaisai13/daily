@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <h2 id="timer">
+    <b id="year"></b>
+  </h2>
+
+  <script>
+  play();
+
+  runing()
+
+  function runing(){
+    setInterval(play,1000);
+  }
+
+  function play(){
+    
+    var d1 = new Date();
+    var y = d1.getFullYear();
+    var m = ('0'+(d1.getMonth()+1)).slice(-2);
+    var d = ('0'+d1.getDate()).slice(-2);
+    var _h = d1.getHours();
+    var h = ('0'+_h%12).slice(-2);
+    var am = (_h > 0 && _h<12 ? '上午': '下午');
+
+    var i = ('0'+d1.getMinutes()).slice(-2);
+    var s = ('0'+d1.getSeconds()).slice(-2);
+
+    var week = d1.getDay();
+
+    var cnWeek = ['日','一','二','三','四','五','六'];
+
+
+    var temp = '今天是：'+ y +'年' + m +'月' + d + '日 ' + am + ' '+ h + '点' + i + '分' + s + '秒' + ' 星期' + cnWeek[week];
+
+    document.getElementById('timer').innerHTML= temp;
+  }
+  </script>
+
+</body>
+</html>
