@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      box-sizing: border-box;
+      width: 500px;
+      height: 100px;
+      border-radius: 50px;
+      border: 1px solid #ccc;
+      position: relative;
+    }
+    #start{
+      height: 100px;
+      width: 100px;
+      background-color: mistyrose;
+      border-radius: 50%;
+      position: absolute;
+    }
+    #background{
+      height: 100px; 
+      border-radius: 50px;
+      color: white;
+      text-align: center;
+      font-size: 20px;
+      line-height: 100px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="box">
+  <div id="start"></div>
+  <div id="background"></div>
+</div>
+
+<script>
+  document.getElementById('start').onmousedown = function (ev){
+
+    var startLeft = ev.clientX;
+
+    var startX = this.offsetLeft;
+
+    var maxLeft = document.getElementById('box').offsetWidth - this.offsetWidth;
+
+    var background = document.getElementById('background');
+
+    document.onmousemove = function(ev){
+
+      var distLeft = ev.clientX - startLeft;
+      var left = startX + distLeft;
+
+      if(left <= 0) left = 0;
+      if(left >= maxLeft) left = maxLeft;
+
+      this.style.left = left + 'px';
+
+      background.style.backgroundColor = 'red';
+      background.style.width = this.offsetWidth + left + 'px';
+
+      var precent = ((this.offsetWidth + left) / (document.getElementById('box').offsetWidth)) * 100 ;
+      precent = precent.toFixed(2) + '%';
+
+      background.innerHTML = '<span>'+precent+'</span>';
+
+    }.bind(this);
+
+    document.onmouseup = function(){
+      document.onmousemove = null;
+    }
+  }
+</script>
+
+</body>
+</html>
