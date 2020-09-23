@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/range.css">
+  <style>
+    #box{
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      right: 20px;
+      top: 20px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  
+红色调：<div class="range red">
+  <i></i>
+  <b></b>
+</div>
+
+绿色调：<div class="range green">
+  <i></i>
+  <b></b>
+</div>
+
+蓝色调：<div class="range blue">
+  <i></i>
+  <b></b>
+</div>
+
+透明度：<div class="range alpha">
+  <i></i>
+  <b></b>
+</div>
+
+
+<div id="box"></div>
+
+<script src="js/range.js"></script>
+
+<script>
+var red = 0;
+var green = 0;
+var blue = 0;
+var alpha = 0;
+
+setRed(red);
+setGreen(green);
+setBlue(blue);
+setAlpha(alpha);
+
+var r = new Range('.red',{
+  size: 255, 
+  change: function(val){
+    red = val;
+    setRed(val);
+  }
+});
+
+var g = new Range('.green',{
+  size: 255, 
+  change: function(val){
+    green = val;
+    setGreen(val);
+  }
+});
+
+var b = new Range('.blue',{
+  size: 255, 
+  change: function(val){
+    blue = val;
+    setBlue(val);
+  }
+});
+
+
+var o = new Range('.alpha',{
+  size: 1, 
+  prec: 1,
+  change: function(val){
+    alpha = val;
+    setAlpha(val);
+  }
+});
+
+function setRed(val){
+  document.getElementById('box').style='background-color:rgba('+val+','+green+','+blue+','+alpha+')';
+}
+
+function setGreen(val){
+  document.getElementById('box').style='background-color:rgba('+red+','+val+','+blue+','+alpha+')';
+}
+
+function setBlue(val){
+  document.getElementById('box').style='background-color:rgba('+red+','+green+','+val+','+alpha+')';
+}
+
+function setAlpha(val){
+  document.getElementById('box').style='background-color:rgba('+red+','+green+','+blue+','+val+')';
+}
+
+</script>
+
+
+</body>
+</html>

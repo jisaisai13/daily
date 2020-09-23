@@ -1,0 +1,33 @@
+.range{
+  position: relative;
+  width: 300px;
+  height: 30px;
+  background-color: #ececec;
+  user-select: none;
+  margin-bottom: 20px;
+}
+
+.range.radius,
+.range.radius b,
+.range.radius i{
+  border-radius: 15px;
+}
+
+.range i,
+.range b{
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.range i{
+  position: absolute;
+  width: 30px;
+  background-color: black;
+}
+.range b{
+  width: 0;
+  background-color: green;
+  color: white;
+  font-size: 14px;
+}
