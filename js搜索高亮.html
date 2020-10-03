@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    mark.first{
+      background-color: red;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  
+<input type="text" placeholder="搜索" oninput="search(this)">
+
+<p id="text">
+  以下内容是我在初学<b>spring</b>时候做的笔记，当时是把比较放在了备忘录里面，如今把笔记重整到csdn上，为了复习也为了分析给大家，笔记写的算比较完整，回看自己做的还是有点羞涩。如有错误之处，欢迎指正，当我日后更强大的时候，我会不断的对内容进行补充和完善。当然学习也就是这么一个过程，学习-实践-总结-实践-总结...   转载请申明原文地址，希望大家支持，谢谢。
+</p>
+
+<script>
+
+function search(input){
+  var word = input.value.trim();
+  var text = document.getElementById('text');
+  if(!word) return;
+
+  var content = text.innerHTML;
+  var reg = new RegExp(word,'gi');
+  var i=0;
+  text.innerHTML = content.replace( reg, function(match){
+    i += 1;
+    return '<mark class="'+(i===1?'first':'')+'">'+match+'</mark>';
+  });
+  
+}
+</script>
+</body>
+</html>
