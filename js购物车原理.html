@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <p>
+    <input id="6" type="number" value="1">
+    <button onclick="addCart(6,0)">九阳豆浆机 加入</button>
+  </p>
+
+  <p>
+    <input id="7" type="number" value="1">
+    <button onclick="addCart(7,1)">风扇 加入</button>
+  </p>
+
+  <p>
+    <input id="8" type="number" value="1">
+    <button onclick="addCart(8,2)">鼠标 加入</button>
+  </p>
+  
+
+  <script>
+  //我的商品信息
+  var mygoods = [
+    {id:6, title:'九阳豆浆机', price: 300},
+    {id:7, title:'风扇', price: 200},
+    {id:8, title:'鼠标', price: 60},
+  ];
+
+  //我的购物车数据
+  var mycarts = [
+    { id:1, title:'手机', price: 1500, num: 1 },
+    { id:2, title:'手套', price: 30, num: 2 },
+    { id:3, title:'帽子', price: 120, num: 2 }
+  ];
+
+  function addCart(id, i){
+    
+    var number = document.getElementById(id);
+    var count = parseInt( number.value );
+
+
+    var isExist = mycarts.some(function(item){
+      return item.id === id;
+    });
+
+    if(isExist){
+      //购物车存在此商品，只需需要数量
+      mycarts = mycarts.map(function(item){
+        if(item.id === id){
+          item.num += count;
+        }
+        return item;
+      })
+
+    }else{
+      //购物车不存在此商品，把这个商品添加进购物车
+      mygoods[i].num = count;
+      mycarts.push(mygoods[i]);
+    }
+
+    console.log( mycarts );
+    // console.log(isExist);
+
+
+  }
+
+  </script>
+
+</body>
+</html>
