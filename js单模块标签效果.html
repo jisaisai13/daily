@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" id="hd">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    dl,dd{
+        margin: 0;
+        padding: 0;
+    }
+    #ul{
+        list-style: none;
+        padding-left: 0;
+        overflow: hidden;
+    }
+    #ul li{
+        float: left;
+        border:1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px 15px;
+        cursor: pointer;
+        margin: 0 5px;
+    }
+    #ul li.active{
+        background-color: black;
+        color: #fff;
+    }
+
+    #dl{
+        margin: 5px;
+        width: 500px;
+    }
+    #dl dd{
+        display: none;
+        padding: 20px;
+        border: 1px solid #ccc;
+        min-height: 300px;
+    }
+    #dl dd.active{
+        display: block;
+    }
+    </style>
+</head>
+<body>
+
+<ul id="ul">
+
+    <li class="active">公司新闻</li>
+    <li>行业新闻</li>
+    <li>世界新闻</li>
+    <li>世界新闻2</li>
+</ul>
+
+<dl id="dl">
+
+    <dd class="active">公司新闻内容</dd>
+    <dd>行业新闻内容</dd>
+    <dd>世界新闻内容</dd>
+    <dd>世界新闻内容2</dd>
+</dl>
+
+
+<script>
+//1.要求 当我单击 公司新闻，然后我会得一个数组，这个数组装入除自己以外的其他元素的文本。
+var ul=document.getElementById('ul');
+var lis=ul.getElementsByTagName('li');//注意 TagName 找出的来一定是 数组
+
+var dl=document.getElementById('dl');
+var dds=dl.getElementsByTagName('dd');//通过标签查找，得到的结果是一个数组
+
+for(var i=0; i<lis.length;i++){
+
+    lis[i].index=i; //设置索引值 0 1 2      onmouseenter 鼠标划过
+    lis[i].onclick=function(){
+
+        for(var i=0;i<lis.length;i++){
+            if(lis[i]==this){
+                this.className='active';
+                dds[i].className='active';
+            }else{
+                lis[i].className='';
+                dds[i].className='';
+            }
+        }
+
+    };
+
+}
+
+</script>
+
+</body>
+</html>
