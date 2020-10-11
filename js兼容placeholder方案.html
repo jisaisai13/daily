@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+<input type="text" id="title" placeholder="请输入关键字">
+
+<h1 id="h1"></h1>
+
+<script>
+//检测是否支持placeholder
+var checkPlaceholder = 'placeholder' in document.createElement('input');
+
+var title = document.getElementById('title');
+
+if( !checkPlaceholder ) {
+
+  alert( '用了插件实现'  );
+
+  var word = title.getAttribute('placeholder');
+
+  setTimeout(function(){
+    title.value = word;
+  },60)
+  
+
+  title.onfocus = function(){
+    if(this.value == word){
+      this.value = '';
+    }
+  }
+
+  title.onblur = function(){
+    if(this.value =='') {
+      this.value = word;
+    }
+  }
+
+}
+</script>
+
+  
+</body>
+</html>
