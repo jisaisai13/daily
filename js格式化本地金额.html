@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+<script>
+var money = 10230.235;
+function formatCNY( num ){
+	
+	//将数字转换为字符串，方便循环取一个一个字符
+	//考虑到小数的情况，如果有小数按小数点分割为数组 ['10230','235']
+	var arr = num.toString().split('.');
+	
+	//取整型部分字符串 10230
+	var int = arr[0]; 
+	
+	//取小数部分字符串 235，如果有小数就连接上.，如果没有给一个空字符串。
+	var dec = arr[1] ? '.'+arr[1]: ''; 
+	
+	//定义1个空字符串，方便累加，注意要逗号是从右向左加的，所以要倒着加逗号
+	var str1 = '';
+	
+	//因为下面的i是从大到小，不利用取余(i%3)判断，所以自己做一个索引值从1开始，因为0也可以%3
+	var j=0;
+	
+	//倒着输出字符串
+	for(var i=int.length-1;i>=0;i--){
+		j += 1;
+		str1 += int[i];
+		//判断j的值，如果j的整除3就3个加一个,。j要小于字符串实际长度，不然会多出一个,
+		if(j % 3===0 && j < int.length) str1 += ',';
+	}
+	
+	//上面的结果是倒着累加的，最终还是需要反转回去
+	var str2 = '';
+	for(var i=str1.length-1;i>=0;i--){
+		str2 += str1[i];
+	}
+	
+	return str2 + dec;
+}
+
+console.log( formatCNY(10230.235) );
+</script>
+
+		
+	</body>
+</html>
