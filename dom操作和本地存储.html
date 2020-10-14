@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body> 
+  
+  <p>
+    <button onclick="add()">添加</button>
+  </p>
+
+  <table border="1" cellspacing="0" cellpadding="8" width="500">
+    <thead>
+      <tr>
+        <th>姓名</th>
+        <th>得分</th>
+        <th width="100">操作</th>
+      </tr>	
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+  </table>
+
+  <script>
+  var flag = '';
+  var localStore =  localStorage.getItem('store');
+  if(localStore == null){
+    store = [];
+  }else{
+    store = JSON.parse(localStore);
+  }
+
+  //显示列表
+  list()
+  
+  function list(){
+    var temp = '';
+    store.forEach(function(item){
+      temp += `
+      <tr>
+        <td>${item.name}</td>
+        <td>${item.score}</td>  
+        <td>
+          <button onclick="del(this)">删除</button>
+          <button onclick="save(this)">修改</button>
+        </td>  
+      </tr>
+      `;
+      document.getElementById('tbody').innerHTML = temp;
+    })
+  }
+  
+  function add(){
+
+    flag = 'add';
+
+    var tbody = document.getElementById('tbody');
+
+    var tr = document.createElement('tr');
+
+    var nameTd = document.createElement('td');
+    nameTd.innerHTML = '<input>';
+    setTimeout(function(){ 
+      nameTd.firstElementChild.focus();
+    },0);
+
+    var scoreTd = document.createElement('td');
+    scoreTd.innerHTML = '<input>'
+
+    //操作td
+    var actionTd = document.createElement('td');
+    var cancelBtn = document.createElement('button');
+    cancelBtn.innerText='取消';
+    cancelBtn.onclick = del.bind(this,cancelBtn);
+
+    var saveBtn = document.createElement('button');
+    saveBtn.innerText='保存';
+    actionTd.appendChild(cancelBtn);
+    actionTd.appendChild(saveBtn);
+
+    //替换
+    saveBtn.onclick = save.bind(this,saveBtn);
+
+    tr.appendChild(nameTd);
+    tr.appendChild(scoreTd);
+    tr.appendChild(actionTd);
+
+    //插入tbody的前面
+    tbody.insertBefore(tr,tbody.firstChild);
+
+  }
+
+  //删除
+  function del(btn){
+    if(confirm('你确定要执行此操作吗？')){
+      var tr = btn.closest('tr');
+      var index = Array.from(tbody.children).indexOf( tr );
+      store.splice(index,1);
+
+      //保存到本地存储
+      saveData();
+
+      tr.remove();
+    }
+  }
+
+  //保存
+  function save(btn){
+    
+    var tbody = document.getElementById('tbody');
+    var nameTd = btn.closest('tr').children[0];
+    var scoreTd = btn.closest('tr').children[1];
+    var cancelBtn = btn.previousElementSibling;
+    if(btn.innerText=='保存'){
+
+      var nameInput = nameTd.firstElementChild;
+      var scoreInput = scoreTd.firstElementChild;
+      var nameVal = nameInput.value.trim();
+      var scoreVal = scoreInput.value.trim();
+
+      if(nameVal==''){
+        alert('请输入姓名！');
+        nameInput.focus();
+        return false;
+      }
+
+      if(!/^\d+$/.test(scoreVal)){
+        alert('请输入数字！');
+        scoreInput.focus();
+        return false;
+      }
+
+      nameTd.innerText = nameVal;
+      scoreTd.innerText = scoreVal;
+
+      btn.innerText='修改';
+      cancelBtn.innerText='删除';
+
+      var info = {
+          name: nameVal,
+          score: scoreVal
+      };
+
+      //添加和修改
+      if(flag=='add'){
+        store.unshift( info );
+      }else if(flag=='edit'){
+        var tr = btn.closest('tr');
+        var index = Array.from(tbody.children).indexOf( tr );
+        store[index] = info;
+      }
+
+      //保存到本地存储
+      saveData();
+
+    }else if(btn.innerText=='修改'){
+
+      flag = 'edit';
+      btn.innerText='保存';
+      var nameText = nameTd.innerText;
+      var scoreText = scoreTd.innerText;
+
+      nameTd.innerHTML = '<input value="'+nameText+'">';
+      scoreTd.innerHTML = '<input value="'+scoreText+'">';
+
+      setTimeout(function(){
+        nameTd.firstElementChild.focus();
+      },0)
+
+    }
+
+  }
+
+  //保存数据到本地存储
+  function saveData(){
+    localStorage.setItem('store', JSON.stringify(store) );
+  }
+  </script>
+
+</body>
+</html>
