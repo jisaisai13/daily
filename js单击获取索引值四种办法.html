@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <ul>
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+  </ul>
+
+  <script>
+    
+    var lis = document.querySelectorAll('li');
+
+    // 办法1
+    // for(let i=0;i<lis.length;i++){
+    //   lis[i].onclick = function(){
+    //     alert(i);//2
+    //   }
+    // }
+
+    // 办法2
+    // for(var i=0;i<lis.length;i++){
+    //   lis[i].index = i;
+    //   lis[i].onclick = function(){
+    //     alert(this.index);
+    //   }
+    // }
+
+    // 办法3
+    // for(var i=0;i<lis.length;i++){
+    //   lis[i].onclick = function(){
+    //     var index = Array.from(lis).indexOf(this);
+    //     alert(index);
+    //   }
+    // }
+
+    // 办法4
+    for(var i=0;i<lis.length;i++){
+
+      //立即执行函数
+      +function(j){
+        lis[j].onclick = function(){
+          alert(j);
+        }
+      }(i);
+
+    }
+  </script>
+</body>
+</html>
