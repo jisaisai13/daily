@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper{
+      width: 1000px;
+      height: 600px;
+      position: relative;
+      margin: 0 auto;
+    }
+    .swiper ul li{
+      position: absolute;
+    }
+    .swiper img{
+      display: block;
+      width: 1000px;
+      height: 600px;
+    }
+    .swiper ol::after{
+      display: block;
+      clear: both;
+      content: "";
+    }
+    .swiper ol{
+      position: absolute;
+      list-style: none;
+      width: 120px;
+      height: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+      line-height: 20px;
+      border-radius: 10px;
+    }
+    .swiper ol li{
+      float: left;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin: 0 5px;
+      background-color: #ccc;
+      line-height: 20px;
+    }
+    .swiper ol li.active{
+      background-color: #fff;
+    }
+    button{
+      position: absolute;
+      background-color: whitesmoke;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      opacity: 0.5;
+      z-index: 5;
+      border: none;
+    }
+    .next{
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="swiper">
+  <ul>
+    <li><img src="images/1.jpg"></li>
+    <li><img src="images/2.jpg"></li>
+    <li><img src="images/3.jpg"></li>
+    <li><img src="images/4.jpg"></li>
+    <li><img src="images/5.jpg"></li>
+    <li><img src="images/6.jpg"></li>
+  </ul>
+  <button class="previous"><</button>
+  <button class="next">></button>
+</div>
+
+<script src="../jquery/jquery.js"></script>
+<script>
+
+$(function(){
+
+  var swiperItem = $('.swiper ul li');
+
+  var length = swiperItem.length;
+  var index = 0;
+
+  var timer = setInterval(play,2000);
+
+  function play(){
+    index++;
+    if(index>length) index=0;
+    swiperItem.eq(index).fadeIn(1000).siblings().fadeOut(1000);
+    $('ol li').eq(index).toggleClass('active').siblings().removeClass('active');
+  }
+
+  function pages(){
+    var box = $('.swiper').append('<ol></ol>');
+    swiperItem.each(function(){
+      $('ol').append('<li></li>');
+    })
+  }
+  pages();
+
+  swiperItem.hover(function(){
+    clearInterval(timer);
+  },function(){
+    timer = setInterval(play,2000);
+  })
+
+  $('.previous').click(function(){
+    if(index>0) index -=1;
+    swiperItem.eq(index).fadeIn(1000).siblings().fadeOut(1000);
+  })
+  $('.next').click(function(){
+    if(index<length) index +=1;
+    swiperItem.eq(index).fadeIn(1000).siblings().fadeOut(1000);
+  })
+
+
+})
+
+</script>
+
+</body>
+</html>
