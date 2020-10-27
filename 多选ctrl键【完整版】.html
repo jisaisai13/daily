@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    ul{
+      float: left;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border: 1px solid #ccc;
+      width: 100px;
+      height: 350px;
+      overflow: auto;
+      margin-bottom: 20px;
+      margin-right: 20px;
+      user-select: none;
+    }
+    p{
+      float: left;
+      width: 100px;
+      padding-top: 120px;
+    }
+    p button{
+      margin-bottom: 20px;
+    }
+    li{
+      line-height: 24px;
+      padding: 5px 15px;
+      cursor: default;
+    }
+    li.active{
+      color: white;
+      background-color: rgb(0, 81, 255);
+    }
+    li:not(.active):hover{
+      background-color: rgba(0, 0, 0, .1);
+    }
+  </style>
+</head>
+<body>
+  
+<ul id="left">
+  <li>刘莎</li>
+  <li>胡佩</li>
+  <li>林雅婷</li>
+  <li>黄新怡</li>
+  <li>应燕玲</li>
+  <li>纪茗</li>
+  <li>毛泓</li>
+  <li>李莹</li>
+  <li>蔡强辉</li>
+  <li>邝炎良</li>
+</ul>
+
+<p>
+  <button onclick="append('#left','#right')"> 追加 >> </button>
+  <button onclick="append('#right','#left')"> << 追加 </button>
+</p>
+
+<ul id="right">
+</ul>
+
+<div style="clear: both;">
+  <button onclick="add('#left')">添加</button>
+</div>
+
+<script>
+
+checkLis('#left', '#right');
+
+function checkLis(){
+
+  var args = Array.from(arguments);
+
+  args.forEach(function(selector){
+
+    var start = 0;
+    var el = document.querySelector(selector);
+
+    //单击li，事件代理
+    el.onclick = function(ev){
+
+    var li = ev.target;//获取到你点选的目标元素
+    var lis = this.children;//this指向ul，也就是获取所有的li
+
+    if(li.tagName.toLowerCase()!=='li') return;//如果单击的不是li，那么就退出函数，这样下面的li就是你的元素
+
+    var end = Array.from(lis).indexOf( li );//Array.from将类数组转换为真正的数组，indexOf查找指定值的位置（索引值）
+
+    if(ev.shiftKey){//如果按住了shift那么执行下面的操作
+      for(var i=0;i<lis.length;i++){
+        if(i>=start && i<=end) lis[i].classList.add('active');//如果i>=第一次单击的位置，<=后一次的位置
+        if(i>end) lis[i].classList.remove('active');
+      }
+    }else{
+      for(var i=0;i<lis.length;i++){
+        lis[i].classList.remove('active');
+      }
+      li.classList.add('active');
+    }
+
+    start = end;
+
+  }
+
+    //鼠标进入 全选，全选全选
+    el.onmouseenter = function(){
+    var lis = this.children;
+    window.onkeydown = function(ev){
+
+      //阻止默认ctrl+a会全选网页内容这个动作
+      ev.preventDefault();
+
+      //ctrl + a || ctrl + z
+      if(ev.ctrlKey){
+        for(var i=0;i<lis.length;i++){
+          if(ev.keyCode === 65){
+            lis[i].classList.add('active');
+          }else if(ev.keyCode === 90){
+            lis[i].classList.remove('active');
+          }
+        }
+      }
+    }
+
+  }
+
+    //鼠标划出
+    el.onmouseleave = function(){
+    window.onkeydown = null;
+  }
+
+  })
+
+}
+
+//公共的添加lis
+function append(from, to){
+
+  document.querySelectorAll(from+' > li.active').forEach(function(li){
+    li.className='';
+    document.querySelector(to).append(li);
+  })
+
+}
+
+function add(selector){
+
+  var li = document.createElement('li');
+  li.innerText =  prompt('请输入姓名！');
+  document.querySelector(selector).append(li);
+
+}
+
+</script>
+
+
+</body>
+</html>
