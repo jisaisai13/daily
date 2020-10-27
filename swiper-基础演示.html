@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../swiper/swiper-5.4.5/package/css/swiper.min.css">
+  <style>
+    .swiper-container{
+      width: 1200px;
+      height: 500px;
+    }
+    .swiper-slide{
+      width: 600px;
+    }
+    .swiper-container img{
+      width: 600px;
+      height: 500px;
+    }
+    .swiper-square{
+      display: inline-block;
+      width: 20px;
+      height: 5px;
+      background-color: rgba(0, 0, 0,0.3);
+      margin: 0 5px;
+    }
+    .swiper-square-active{
+      background-color: rgba(255, 255, 0,0.7);
+    }
+    .saisai-button-next,.saisai-button-prev{
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      color: green;
+      background-color: pink;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      z-index: 5;
+      line-height: 50px;
+      font-size: 24px;
+    }
+    .saisai-button-next{
+      right: 0;
+    }
+    .saisai-button-prev{
+      left: 0;
+    }
+    .saisai-pagination{
+      text-align: center;
+      padding-top: 20px;
+    }
+    .saisai-pagination span{
+      margin: 0 10px;
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="images/1.jpg" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/2.jpg" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/3.jpg" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/4.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  
+  <div class="saisai-pagination"></div>
+  <div class="saisai-button-next"> > </div>
+  <div class="saisai-button-prev"> < </div>
+
+
+  <script src="../swiper/swiper-5.4.5/package/js/swiper.min.js"></script>
+  <script>
+    var swiper = new Swiper('.swiper-container',{
+      loop:true,
+      autoplay:{
+        delay:1000,//停留的时间
+        stopOnLastSlide: false,//loop模式这个属性无效
+        disableOnInteraction: false //true操作后悔停止自动播放
+      },
+      slidesPerView: 'auto',
+      pagination: {
+        el:'.saisai-pagination',
+        bulletClass: 'swiper-square',
+        bulletActiveClass: 'swiper-square-active',
+        clickable: true
+      },//页码
+      // navigation: {
+      //   nextEl: '.saisai-button-next',
+      //   prevEl: '.saisai-button-prev',
+      // },//左右切换
+    });
+
+    //编程式控制上一页和下一页
+    document.querySelector('.saisai-button-next').onclick = function(){
+      swiper.slideNext();
+    }
+
+    document.querySelector('.saisai-button-prev').onclick = function(){
+      swiper.slidePrev();
+    }
+
+  </script>
+</body>
+</html>
