@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  //将ip换算为数字
+  function ipToNumber( ip ){
+    return ip.replace(/(\d+)\D(\d+)\D(\d+)\D(\d+)/,function(match,$1,$2,$3,$4){
+      return $1*255*255*255 + $2*255*255 + $3*255 + $4;
+    });
+  }
+
+  //判断是否包含ip
+  function hasIps(start, end, ip){
+    start = ipToNumber( start );
+    end = ipToNumber( end );
+    ip = ipToNumber( ip );
+    return ip >= start && ip <= end;
+  }
+
+  console.log( ipToNumber( '127.0.0.1' ) );
+
+  console.log( hasIps('127.0.0.1', '127.0.0.255', '127.0.0.100') );
+
+</script>
+</body>
+</html>
