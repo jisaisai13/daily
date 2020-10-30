@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=460, initial-scale=1.0">
+  <!-- 
+  有两套方案：
+
+  一、省事高效率方案
+  
+  优点：利用浏览器视口具有缩放功能，会自动适配，高效省事，和切固定布局是一样。
+  缺点：因为会缩放，可能造成字体或者间距变得很小，版式在小屏下不协调。
+
+  推荐：让设计师 指定移动端宽度 为 460（当然也可以高点），字体稍微设计大小（因为考虑缩小后，字体会变小的情况）
+
+  实施：
+  <meta name="viewport" content="width=460"> 让width直接等于460，这样浏览器会自动缩放，你只需要定义一个盒子
+  宽度为460即可，然后切图完全是再这个宽度里面写，不需要考虑响应式的情况。
+
+  二、标准的不缩放方案
+
+  优点：因为这种方法它不缩放，所以我们要考虑不同屏幕大小的适配，效果优质。
+
+  缺点：因为要考虑适配，所以耗时间、低效率。
+
+  实施：
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  -->
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
