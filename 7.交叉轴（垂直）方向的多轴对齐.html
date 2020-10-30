@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+</head>
+<body>
+<style>
+  .box{
+    display: flex;
+    flex-wrap: wrap; /*设置换行*/
+    height: 300px;
+    background-color: #ccc;
+    /*垂直对齐，一定要给一个高度，这样才能看到效果*/
+    align-content: center; /*多轴对齐，当出现换行时，会自动新起一行*/
+    /*
+    stretch     拉伸对齐  默认 成员没有设高度，它会拉伸成员高度为100%
+    flex-start  顶对齐
+    center      居中对齐
+    flex-end    底对齐
+    baseline    基线对齐  以文字的中线下一点对齐一根线
+    */
+  }
+  .box span{
+    width: 100px;
+    height: 60px;
+    background-color: red;
+    color: white;
+  }
+</style>
+
+<div class="box">
+  <span>项目1</span>
+  <span style="font-size:24px;">项目2</span>
+  <span>项目3</span>
+  <span>项目4</span>
+  <span>项目5</span>
+</div>
+
+
+</body>
+</html>
