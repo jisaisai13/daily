@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    :root{
+      --primary-color: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    ul{
+      list-style: none;
+    }
+
+    .page{
+      padding: 0 100px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .page h1{
+      text-align: center;
+      margin: 1em;
+      font-size: 24px;
+    }
+
+
+
+    .tab{
+      margin-bottom: 20px;
+      border: 1px solid var(--primary-color);
+    }
+    .tab-nav{
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .tab-nav li{
+      line-height: 40px;
+      border-right: 1px solid var(--primary-color);
+      border-bottom: 1px solid var(--primary-color);
+      flex-grow: 1;
+      text-align: center;
+      cursor: pointer;
+    }
+    .tab-nav li:hover{
+      background-color: rgba(0,0,0,.1);
+    }
+    .tab-nav li:last-child{
+      border-right: none;
+    }
+    .tab-nav li.active{
+      background-color: var(--primary-color);
+      color: white;
+    }
+    .tab-panel{
+      display: none;
+      padding: 20px;
+      min-height: 100px;
+    }
+    .tab-panel.active{
+      display: block;
+    }
+
+</style>
+</head>
+<body>
+  
+<div class="page">
+
+  <h1>选项卡演示</h1>
+
+  <div id="tab1" class="tab">
+    <ul class="tab-nav">
+      <li class="active">选项1</li>
+      <li>选项2</li>
+      <li>选项3</li>
+      <li>选项4</li>
+    </ul>
+    <div class="tab-panel active">
+      选项1 内容
+    </div>
+    <div class="tab-panel">
+      选项2 内容
+    </div>
+    <div class="tab-panel">
+      选项3 内容
+    </div>
+    <div class="tab-panel">
+      选项4 内容
+    </div>
+  </div>
+
+  <div id="tab2" class="tab">
+    <ul class="tab-nav">
+      <li class="active">选项1</li>
+      <li>选项2</li>
+      <li>选项3</li>
+      <li>选项4</li>
+    </ul>
+    <div class="tab-panel active">
+      选项1 内容
+    </div>
+    <div class="tab-panel">
+      选项2 内容
+    </div>
+    <div class="tab-panel">
+      选项3 内容
+    </div>
+    <div class="tab-panel">
+      选项4 内容
+    </div>
+  </div>
+
+</div>
+
+
+
+<script src="js/jquery3.5.js"></script>
+<script>
+//封装jquery选项卡插件
+$.fn.extend({
+  //options 用户参数
+  tab ( options ){
+
+    //默认参数
+    var defaults = {
+      type: 'click',
+      active: 0,
+      change: function(){},
+    }
+
+    //将用户参数覆盖默认参数在覆盖到一个全新的对象中
+    options = $.extend({}, defaults, options);
+
+    return this.each(function(){
+
+      var $tabnavli = $(this).find('.tab-nav li');
+      var $tabpanel = $(this).find('.tab-panel');
+
+      setTimeout(function(){
+        //触发器
+        $tabnavli.eq(options.active).trigger(options.type);
+      },30)
+
+      $tabnavli.on( options.type, function(){
+
+        $(this).addClass('active').siblings().removeClass('active');
+        var index = $(this).index();
+        $tabpanel.eq(index).addClass('active').siblings('.tab-panel').removeClass('active');
+ 
+        options.change && options.change( index );
+
+      })
+ 
+    })
+
+  }
+
+})
+
+//初始化等待dom解析完毕
+$(function(){
+
+  //jquery选项卡插件调用方式
+  $('#tab1').tab({
+    active: 1, 
+    change: function(i){
+      console.log('您单击的选项卡索引值是'+ i)
+    }
+  });
+
+  $('#tab2').tab({active: 3});
+  
+})
+
+</script>
+
+</body>
+</html>
