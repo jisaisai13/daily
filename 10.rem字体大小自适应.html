@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+    }
+    .container{
+      background-color: #f0f0f0;
+      max-width: 750px;
+      min-width: 320px;
+      height: 100vh;
+      margin: auto;
+    } 
+    h1{
+      font-size: 0.4rem;
+      text-align: center;
+    }
+  </style>
+  <script>
+    function setHtmlFontSize(){
+      var html = document.documentElement;
+      var vw = html.clientWidth;
+      vw = vw <= 320 ? 320 : vw;
+      vw = vw >= 750 ? 750 : vw;
+      html.style.fontSize = vw/7.5 + 'px';
+    }
+    //页面载入时执行
+    window.addEventListener('DOMContentLoaded',setHtmlFontSize);
+    //页面改变时执行
+    window.onresize = setHtmlFontSize;
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>标题1字体大小可以自动调整</h1>
+  </div>
+</body>
+</html>
