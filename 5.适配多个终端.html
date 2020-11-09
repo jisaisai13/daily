@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 默认 移动优先 手机 */
+    body{
+      margin: 0;
+    }
+    .container{
+      height: 500px;
+      padding-left: 15px;
+      padding-right: 15px;
+      background-color: skyblue;
+    }
+
+    /* 大于或等于768小于992  平板*/
+    @media screen and (min-width: 768px){
+      .container{
+        width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
+        background-color: green;
+      }
+    }
+    /* 大于或等于992小于1170 中等屏幕 */
+    @media screen and (min-width: 992px){
+      .container{
+        width: 970px;
+        background-color: blue;
+      }
+    }
+
+    /* 大于1200 大型屏幕  */
+    @media screen and (min-width: 1200px){
+      .container{
+        width: 1170px;
+        background-color: tomato;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container"></div>
+</body>
+</html>
